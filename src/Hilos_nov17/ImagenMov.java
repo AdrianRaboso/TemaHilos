@@ -12,6 +12,7 @@ public class ImagenMov extends JButton implements Runnable {
 
     JFrame ventana;
     ImageIcon img = new ImageIcon("giphy.gif");
+    int ancho, alto;
 
     public ImagenMov() {
         this.setIcon(img);
@@ -23,21 +24,23 @@ public class ImagenMov extends JButton implements Runnable {
         ImageIcon img = new ImageIcon("giphy.gif");
         this.setIcon(img);
         setSize(img.getIconWidth(), img.getIconHeight());
+        ancho = (int) (Math.random() * 400);
+        alto = (int) (Math.random() * 400);
+        setLocation(ancho, alto);
     }
 
     @Override
     public void run() {
-        int ancho = 0, alto = 0;
         int anchoVentana;
         int altoVentana;
-        
+
         while (true) {
+            ancho += 1;
+            alto += 1;
             anchoVentana = ventana.getWidth();
             altoVentana = ventana.getHeight();
-            ancho += 10;
-            alto += 10;
             try {
-                Thread.sleep(50);
+                Thread.sleep(5);
             } catch (InterruptedException ex) {
             }
             setLocation(ancho, alto);
@@ -47,6 +50,7 @@ public class ImagenMov extends JButton implements Runnable {
             if (alto >= (altoVentana - this.getHeight())) {
                 alto = 0;
             }
+            System.out.println("sigo");
         }
 
     }
